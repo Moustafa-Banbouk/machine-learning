@@ -1,0 +1,592 @@
+/-----------------------------------------
+| State-action rewards from Q-Learning
+\-----------------------------------------
+
+light:green,oncoming:right,right:right,left:right,
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : -0.11
+ -- left : 0.00
+
+light:green,oncoming:left,right:left,left:right,
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.68
+ -- left : 0.00
+
+light:green,oncoming:None,right:None,left:None,
+ -- forward : 1.14
+ -- None : 0.00
+ -- right : 0.51
+ -- left : 0.16
+
+light:green,oncoming:forward,right:None,left:None,
+ -- forward : 0.63
+ -- None : 0.00
+ -- right : 1.24
+ -- left : -15.49
+
+light:red,oncoming:None,right:left,left:right,
+ -- forward : -5.13
+ -- None : 1.58
+ -- right : 0.00
+ -- left : 0.00
+
+light:red,oncoming:right,right:forward,left:None,
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 1.18
+ -- left : 0.00
+
+light:red,oncoming:left,right:right,left:right,
+ -- forward : -4.84
+ -- None : 0.00
+ -- right : 0.00
+ -- left : -4.61
+
+light:red,oncoming:None,right:left,left:None,
+ -- forward : -4.80
+ -- None : 0.00
+ -- right : 1.87
+ -- left : -9.10
+
+light:red,oncoming:left,right:forward,left:right,
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.36
+ -- left : 0.00
+
+light:green,oncoming:left,right:right,left:forward,
+ -- forward : -0.29
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+light:green,oncoming:right,right:forward,left:None,
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.92
+ -- left : 0.00
+
+light:green,oncoming:right,right:None,left:left,
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+light:green,oncoming:None,right:None,left:forward,
+ -- forward : 2.02
+ -- None : 0.00
+ -- right : 0.44
+ -- left : 0.00
+
+light:red,oncoming:left,right:None,left:left,
+ -- forward : -5.25
+ -- None : 0.00
+ -- right : 1.13
+ -- left : 0.00
+
+light:green,oncoming:left,right:None,left:left,
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.77
+
+light:red,oncoming:None,right:None,left:None,
+ -- forward : -9.97
+ -- None : 0.00
+ -- right : 0.83
+ -- left : -10.68
+
+light:green,oncoming:left,right:left,left:None,
+ -- forward : 0.52
+ -- None : 0.00
+ -- right : 0.11
+ -- left : 0.45
+
+light:green,oncoming:None,right:forward,left:right,
+ -- forward : 0.69
+ -- None : 0.00
+ -- right : 0.67
+ -- left : 0.00
+
+light:green,oncoming:forward,right:None,left:forward,
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.49
+ -- left : 0.00
+
+light:green,oncoming:forward,right:None,left:left,
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.77
+ -- left : -9.99
+
+light:red,oncoming:right,right:forward,left:right,
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+light:red,oncoming:right,right:None,left:None,
+ -- forward : 0.00
+ -- None : 0.51
+ -- right : 0.00
+ -- left : -20.45
+
+light:green,oncoming:forward,right:forward,left:left,
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+light:red,oncoming:None,right:forward,left:left,
+ -- forward : -20.36
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+light:green,oncoming:None,right:left,left:left,
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.49
+ -- left : 0.91
+
+light:red,oncoming:forward,right:left,left:None,
+ -- forward : -5.40
+ -- None : 0.00
+ -- right : 1.46
+ -- left : -4.73
+
+light:green,oncoming:forward,right:left,left:forward,
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.15
+ -- left : 0.00
+
+light:green,oncoming:left,right:forward,left:None,
+ -- forward : 1.10
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+light:red,oncoming:right,right:None,left:right,
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+light:red,oncoming:left,right:right,left:None,
+ -- forward : -4.81
+ -- None : 0.00
+ -- right : 1.14
+ -- left : -4.60
+
+light:red,oncoming:None,right:left,left:forward,
+ -- forward : -20.28
+ -- None : 0.00
+ -- right : 0.00
+ -- left : -19.71
+
+light:green,oncoming:right,right:right,left:left,
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.00
+ -- left : -10.12
+
+light:green,oncoming:right,right:left,left:None,
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 1.02
+ -- left : 0.00
+
+light:red,oncoming:left,right:None,left:forward,
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+light:green,oncoming:None,right:forward,left:left,
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 1.74
+
+light:green,oncoming:right,right:None,left:None,
+ -- forward : -0.12
+ -- None : 0.00
+ -- right : 0.55
+ -- left : -9.78
+
+light:red,oncoming:left,right:right,left:left,
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.00
+ -- left : -4.84
+
+light:green,oncoming:right,right:left,left:left,
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+light:red,oncoming:left,right:forward,left:None,
+ -- forward : 0.00
+ -- None : 1.35
+ -- right : 0.00
+ -- left : 0.00
+
+light:green,oncoming:forward,right:forward,left:None,
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.00
+ -- left : -9.78
+
+light:green,oncoming:forward,right:forward,left:right,
+ -- forward : 0.16
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+light:red,oncoming:None,right:None,left:right,
+ -- forward : -5.31
+ -- None : 0.00
+ -- right : 0.10
+ -- left : 0.00
+
+light:red,oncoming:forward,right:None,left:forward,
+ -- forward : -37.16
+ -- None : 0.97
+ -- right : -10.31
+ -- left : 0.00
+
+light:red,oncoming:None,right:right,left:right,
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+light:red,oncoming:forward,right:None,left:None,
+ -- forward : -10.03
+ -- None : 0.00
+ -- right : 0.92
+ -- left : -7.59
+
+light:red,oncoming:right,right:left,left:right,
+ -- forward : -5.10
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+light:green,oncoming:None,right:right,left:forward,
+ -- forward : 0.68
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+light:red,oncoming:left,right:forward,left:left,
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.83
+ -- left : 0.00
+
+light:green,oncoming:left,right:None,left:None,
+ -- forward : 1.17
+ -- None : 0.00
+ -- right : 0.76
+ -- left : 0.42
+
+light:green,oncoming:None,right:left,left:forward,
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 1.17
+ -- left : 0.00
+
+light:green,oncoming:None,right:None,left:right,
+ -- forward : 0.43
+ -- None : 0.00
+ -- right : 0.84
+ -- left : 0.22
+
+light:red,oncoming:forward,right:None,left:left,
+ -- forward : -4.96
+ -- None : 1.28
+ -- right : 0.00
+ -- left : 0.00
+
+light:green,oncoming:left,right:forward,left:forward,
+ -- forward : 0.85
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+light:red,oncoming:None,right:forward,left:None,
+ -- forward : -29.63
+ -- None : 0.00
+ -- right : 0.56
+ -- left : 0.00
+
+light:red,oncoming:forward,right:right,left:left,
+ -- forward : -4.96
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+light:red,oncoming:None,right:forward,left:forward,
+ -- forward : 0.00
+ -- None : 0.65
+ -- right : -14.74
+ -- left : 0.00
+
+light:green,oncoming:None,right:left,left:None,
+ -- forward : 0.92
+ -- None : 0.00
+ -- right : 1.24
+ -- left : 0.00
+
+light:green,oncoming:forward,right:right,left:None,
+ -- forward : 0.00
+ -- None : -2.54
+ -- right : 0.24
+ -- left : -14.96
+
+light:green,oncoming:left,right:None,left:forward,
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.53
+ -- left : 0.00
+
+light:green,oncoming:None,right:right,left:None,
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : -0.03
+ -- left : 0.00
+
+light:green,oncoming:left,right:left,left:forward,
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+light:red,oncoming:forward,right:left,left:forward,
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.00
+ -- left : -20.02
+
+light:green,oncoming:forward,right:left,left:None,
+ -- forward : 1.13
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+light:red,oncoming:left,right:left,left:left,
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+light:green,oncoming:left,right:left,left:left,
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.40
+
+light:red,oncoming:right,right:None,left:forward,
+ -- forward : -19.93
+ -- None : 0.00
+ -- right : -9.92
+ -- left : -20.27
+
+light:green,oncoming:None,right:forward,left:forward,
+ -- forward : 1.49
+ -- None : 0.00
+ -- right : 0.46
+ -- left : 0.00
+
+light:red,oncoming:right,right:forward,left:forward,
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.00
+ -- left : -19.90
+
+light:green,oncoming:left,right:forward,left:left,
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.45
+
+light:red,oncoming:right,right:None,left:left,
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+light:red,oncoming:None,right:None,left:left,
+ -- forward : -8.63
+ -- None : 1.21
+ -- right : 0.00
+ -- left : -8.67
+
+light:red,oncoming:left,right:left,left:None,
+ -- forward : -4.51
+ -- None : 1.27
+ -- right : 0.61
+ -- left : -4.92
+
+light:red,oncoming:forward,right:None,left:right,
+ -- forward : -5.25
+ -- None : 0.00
+ -- right : 0.00
+ -- left : -4.62
+
+light:red,oncoming:left,right:None,left:right,
+ -- forward : -5.19
+ -- None : 0.00
+ -- right : 0.20
+ -- left : 0.00
+
+light:red,oncoming:None,right:right,left:None,
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.16
+ -- left : 0.00
+
+light:green,oncoming:left,right:None,left:right,
+ -- forward : 0.20
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+light:green,oncoming:right,right:None,left:forward,
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.00
+ -- left : -9.54
+
+light:red,oncoming:None,right:forward,left:right,
+ -- forward : -19.57
+ -- None : 1.23
+ -- right : 0.00
+ -- left : 0.00
+
+light:red,oncoming:forward,right:right,left:None,
+ -- forward : -4.74
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+light:green,oncoming:None,right:None,left:left,
+ -- forward : 1.46
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.24
+
+light:red,oncoming:None,right:None,left:forward,
+ -- forward : -20.24
+ -- None : 1.60
+ -- right : -17.88
+ -- left : -29.41
+
+light:green,oncoming:None,right:forward,left:None,
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.65
+ -- left : 1.01
+
+light:red,oncoming:None,right:right,left:forward,
+ -- forward : -19.87
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+light:red,oncoming:forward,right:forward,left:None,
+ -- forward : -20.49
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+light:red,oncoming:right,right:left,left:None,
+ -- forward : -5.31
+ -- None : 0.00
+ -- right : -0.06
+ -- left : 0.00
+
+light:red,oncoming:left,right:left,left:forward,
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+light:red,oncoming:None,right:right,left:left,
+ -- forward : -4.83
+ -- None : 0.00
+ -- right : 0.72
+ -- left : 0.00
+
+light:green,oncoming:left,right:forward,left:right,
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+light:red,oncoming:right,right:left,left:left,
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+light:red,oncoming:left,right:None,left:None,
+ -- forward : -9.31
+ -- None : 0.00
+ -- right : 0.69
+ -- left : -10.43
+
+light:green,oncoming:forward,right:right,left:left,
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+light:red,oncoming:right,right:left,left:forward,
+ -- forward : -20.29
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+light:green,oncoming:right,right:None,left:right,
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.60
+ -- left : 0.00
+
+light:red,oncoming:None,right:left,left:left,
+ -- forward : -4.66
+ -- None : 0.00
+ -- right : 0.59
+ -- left : 0.00
+
+light:red,oncoming:forward,right:forward,left:left,
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+light:green,oncoming:right,right:forward,left:left,
+ -- forward : 0.00
+ -- None : -2.60
+ -- right : 0.00
+ -- left : 0.00
+
+light:green,oncoming:right,right:right,left:None,
+ -- forward : 0.38
+ -- None : 0.00
+ -- right : 0.00
+ -- left : -9.68
+
+light:red,oncoming:forward,right:left,left:left,
+ -- forward : -4.63
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
